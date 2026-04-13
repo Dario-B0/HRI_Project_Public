@@ -1,0 +1,37 @@
+topic: ~start()
+language: enu
+
+include:lexicon_enu.top
+
+
+concept:(perception) ^rand["it seems" "it appears" "I believe" "I think" "my sensors indicate"]
+concept:(first_meeting_fact) ^rand[ "this is our first real meeting" "we're {truly} meeting for the first time" "I don't believe we've been formally introduced" "I don't seem to have you in my records" "you're a new face to me" ]
+concept:(registration_query_verb) ^rand[ {"would you like to" "do you want to" "are you interested in" "how about to" "perhaps you'd consider to"} ]
+concept:(registration_action) ^rand[ register "create a profile" "sign up" "get saved in my system" "let me note your details" "be added to my contact list" ]
+concept:(remember_verb) ^rand[ remember recall recognise "know" identify "keep track of" "not forget" ]
+concept:(future_encounter_context) ^rand[ "next time" "in {the} future" "for our future interactions" "when we meet again" "for subsequent conversations" ]
+
+
+proposal: %start Hello I am Pepper, your nursing assistant, before we start, can I ask you what is your full name?
+  u1:([{i am} {i'm} {my name is}] _* _*) %user_name hello $1 $firstName=$1 $lastName=$2
+
+
+proposal: %user_registration ~hello $firstName! {~perception} ~first_meeting_fact . ~registration_query_verb ~registration_action so {that} I will ~remember_verb you ~future_encounter_context ?
+    u1:(~yes) %startRegistration ok I need a few information, is your first name $firstName ? $isGuest=False
+      u2:(~yes) ^gotoReactivate(last_name)
+      u2:(~no) I must have misunderstood before, what is your first name?
+        u3:(_*) Nice to meet you $1 $firstName=$1 ^gotoReactivate(last_name)
+    u1:(~no) %refuseRegistration Ok, no problem, you will continue as a guest, but i will not be able to remember our interaction the next time we meet. $isGuest=True
+
+  
+proposal: %last_name and is it you last name $lastName ?
+    u1:(~yes) ^gotoReactivate(age)
+    u1:(~no) I must have misunderstood before, what is your last name?
+        u3:(_*) $lastName=$1 ^gotoReactivate(age)
+
+proposal: %age Finally I would like to ask you your age
+    u1:(_*) $userAge=$1 ^gotoReactivate(confirmation)
+
+proposal: %confirmation so you are $firstName $lastName and you are $userAge years old, is it correct?
+    u1:(~yes) %confirmed Ok I will add you to my database so that i will remember you next time
+    u1:(~no) Oh, I must have misunderstood something, let's start from the beggining. ^gotoReactivate(startRegistration)

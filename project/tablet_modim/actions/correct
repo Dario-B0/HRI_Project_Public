@@ -1,0 +1,13 @@
+TEXT_title
+<*,*,*,*>: Good job
+----
+IMAGE
+<*,*,*,*>: img/correct_im.jpg
+----
+TTS
+<*,*,*,*>: Good job! Correct answer.
+----
+TEXT_default
+<*,*,*,*>:  Good job! Correct answer.
+----
+

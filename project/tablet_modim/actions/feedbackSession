@@ -1,0 +1,19 @@
+TEXT
+<*,*,*,*>:  Did you find the exercise helpful?
+----
+TTS
+<*,*,*,*>:  Did you find the exercise helpful?
+----
+BUTTONS
+helpfull
+<*,*,*,*>:  Very Helpful
+somewhat
+<*,*,*,*>:  Somewhat
+notreally
+<*,*,*,*>:  Not Really
+notatall
+<*,*,*,*>:  Not At All
+----
+ASR 
+<*,*,*,*>:  { 'helpfull' : ['very helpful'], 'somewhat': ['somewhat helpful','somewhat'], 'notreally' : ['not really helpful', 'not really'], 'notatall': ['not helpful at all','not at all']}
+----

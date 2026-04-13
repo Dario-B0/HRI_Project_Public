@@ -1,0 +1,17 @@
+TEXT
+<*,*,*,*>:  Would you like a more relaxed tone or would you like me to speak faster?
+----
+TTS
+<*,*,*,*>:  Would you like a more relaxed tone or would you like me to speak faster?
+----
+BUTTONS
+faster
+<*,*,*,*>:  Faster
+slower
+<*,*,*,*>:  Slower
+neither
+<*,*,*,*>:  Neither
+----
+ASR 
+<*,*,*,*>:  { 'faster': ['faster'], 'slower': ['slower'], 'neither': ['neither'] }
+----

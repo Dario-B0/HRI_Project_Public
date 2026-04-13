@@ -1,0 +1,20 @@
+IMAGE
+<*,*,*,*>:  img/schedule_1.jpg
+----
+TEXT
+<*,*,*,*>:  Would you like to see the daily, the weekly, or the complete schedule?
+----
+TTS
+<*,*,*,*>:  Would you like to see the daily, the weekly, or the complete schedule?
+----
+BUTTONS
+daily
+<*,*,*,*>:  Daily
+weekly
+<*,*,*,*>:  Weekly
+complete
+<*,*,*,*>:  Complete
+----
+ASR 
+<*,*,*,*>:  { 'daily' : ['daily'], 'weekly' : ['weekly'], 'complete' : ['complete'] }
+----

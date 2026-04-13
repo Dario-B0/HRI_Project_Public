@@ -1,0 +1,24 @@
+IMAGE
+<*,*,*,*>: img/riddle.jpg
+----
+TEXT
+<*,*,*,*>:  I’m full of keys but I can’t open any door. What am I? 
+----
+TTS
+<*,*,*,*>: I’m full of keys but I can’t open any door. What am I?
+----
+BUTTONS
+wrong
+<*,*,*,*>:  A. A Safe
+wrong
+<*,*,*,*>:  B. A Keychain
+correct
+<*,*,*,*>:  C. A Piano
+wrong
+<*,*,*,*>:  D. A Jail Cell
+wrong
+<*,*,*,*>:  E. A Computer Keyboard
+----
+ASR 
+<*,*,*,*>:  { 'correct': ['C', 'c', 'third', '3', 'A Piano'], 'wrong': ['A', 'B', 'D', 'E', 'a', 'b', 'd', 'e', 'first', 'second', 'fourth', 'fifth', '1', '2', '4', '5', 'A Safe', 'A Keychain', 'A Jail Cell', 'A Computer Keyboard'] }
+----

@@ -1,0 +1,15 @@
+TEXT
+<*,*,*,*>:  Would you like to leave a feedback to change some settings?
+----
+TTS
+<*,*,*,*>:  Would you like to leave a feedback to change some settings?
+----
+BUTTONS
+yes
+<*,*,*,*>:  Yes
+no
+<*,*,*,*>:  No
+----
+ASR 
+<*,*,*,*>:  { 'yes': ['yes'], 'no': ['no'] }
+----

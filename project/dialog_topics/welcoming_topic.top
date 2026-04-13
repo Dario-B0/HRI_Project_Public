@@ -1,0 +1,117 @@
+topic: ~welcome()
+language: enu
+
+include:lexicon_enu.top
+
+# User responds negatively
+concept:(im_bad) [
+  "it's not going so well"
+  "I don't feel ["{very} well" good "at my best" special great "in "the best" shape"]"
+  "I've been better"
+  "it goes ["{very rather pretty} poorly" "not {very} well"]"
+  "not {very} well"
+  "not good"
+  "~i_am_not so good"
+  "not super"
+  "I'm not in the best shape"
+]
+
+concept: (hi_Pepper) ["{~hello} Pepper" "~hello {Pepper}"]
+
+# User initiates conversation
+u:(~hi_Pepper) %init_welcome
+    ^rand["Hello $firstName! It's great to see you. How are you feeling today?" "Hi there, $firstName! Nice to see you. How are you doing?" "Greetings, $firstName! Good to catch up. What's your mood like today?"]
+
+  # User responds positively
+  u1:(~im_good)
+    ^rand["That's wonderful to hear! Is there something specific I can do for you?" "I'm so glad to hear that! How can I assist you further?" "Fantastic news! What can I help you with?"] ^gotoReactivate(ready)
+
+  u1:(~im_bad)
+    ^rand["I'm sorry to hear that. Would you like to do some exercise together to manage the stress?" "That sounds tough. How about we work out together to help clear your head?" "I'm really sorry you're feeling stressed. Would getting some relaxing activity together help you feel better?"] 
+
+    u2:(~yes) ^gotoReactivate(start_stressMan_session)
+    u2:(~no)  ^rand["If there's anything I can do to help, please let me know." "Let me know if there's any way I can assist." "Don't hesitate to reach out if you need some help."] ^gotoReactivate(ready)
+
+
+# User asks for Pepper's name
+u:(["What is your name?" "Who are you?" ~what_is_your_name])
+  ^rand["My name is Pepper, your friendly humanoid robot." "I'm Pepper, and I'm here to help you as your friendly humanoid robot." "You can call me Pepper; I'm your friendly humanoid robot."] 
+
+# User asks how Pepper is doing
+u:(["How are you?" "How's it going?" "What's up?" "Are you doing well?" "How are things?"])
+  %ready ^rand["I'm functioning optimally and ready to assist you." "I'm in top working order and prepared to help you." "I'm operating at peak performance and eager to assist."] ^gotoReactivate(canDo)
+
+# User expresses gratitude
+u:(~thank_you)
+  ^rand["You're welcome! I'm always here to help." "Glad to help! Don't hesitate to reach out again." "Happy to assist! I'm available if you need anything else."]
+
+# User says goodbye
+u:([Goodbye Bye "See you later" "See you soon"])
+  ^rand[Goodbye Bye Farewell]! {"See you next time!"} Have a great day.
+
+# User wants to know what Pepper can do
+u:("What ~can_you do?" "What are your capabilities?" "What services do you offer?" "How can you assist me?" "What is your function?")
+  %canDo ^rand["I can give you assistance, chat with you, give you some entertainment and help you relaxing. What would you like to do?" "I offer a variety of services including assistance, conversation, entertainment, and relaxation. How may I help you today?" "Whether you need help, a friendly chat, something fun to do, or a way to unwind, I'm here for you. What sounds good?"]
+
+
+# User express stress and Pepper propose some relaxation exercise by initiative
+u:({~hi_Pepper}; ["I feel [stressed overwhelmed anxious]" "~i_am [feeling experiencing] {"a lot {of}" "a bit {of}" quite really } [stress stressed overwhelm overwhelmed pressure "the strain" anxiety anxious]"] {"right now"}) %askSession ^rand["Would you like to do some exercises together?" "How about we relax together?" "Are you interested in exercising with me?"]
+  u1: (~yes) %start_stressMan_session ^rand["Let's try doing some exercises together, just say 'stop' or 'enough' to end the exercise at any time, I'm sure you'll feel better." "How about we do some exercises together? Just say 'stop' or 'enough' whenever you're ready to finish, and I bet you'll feel great afterward." "Let's relax together! You can end the session by saying 'stop' or 'enough' at any point, and I'm confident it will make you feel better."]
+  u1: (~no) ^rand["I am sorry you feel bad, let me now if I can help." "I apologize that you're feeling unwell; please tell me if there's anything I can do." "It saddens me to hear you're not doing well; let me know if there's any way I can assist."]
+
+# User express stress and propose some relaxation exercise
+u:({~hi_Pepper} ["I feel [stressed overwhelmed anxious]" "~i_am [feeling experiencing] {"a lot {of}" "a bit {of}" quite really } [stress stressed overwhelm overwhelmed pressure "the strain" anxiety anxious]"] {"right now"}, I would like to do a stress management session now) 
+  I'm sorry you feel that way. ^gotoReactivate(askSession)
+
+
+# User asks for entertainment
+u:(["I am so bored." "I am feeling uninspired; what can I do to pass the time?" "I am looking for something to do."])
+^rand["Of course! How about a riddle?" "Absolutely! Would you like to hear a riddle?" "Certainly! A riddle sounds like a great idea."]
+
+    u1:(~yes {["I would like that." "I d be interested in that." "That appeals to me." "I'd be keen on that." "That sounds good to me."]})
+    ^gotoReactivate(startRiddle)
+
+    u1:(~no {["I would not like that." "I wouldn't care for that." "That doesn't appeal to me." "I'm not fond of that idea." "I'd rather not have that."]})
+    ^rand["What if I told you a joke instead?" "How about I share a joke with you instead?" "Would you prefer I tell you a joke?"]
+
+	    u2:(~yes {["I would like that." "I'd be interested in that." "That appeals to me." "I'd be keen on that." "That sounds good to me."]})
+	    ^gotoReactivate(tellJoke)
+	
+	    u2:(~no {["I would not like that." "I wouldn't care for that." "That doesn't appeal to me." "I'm not fond of that idea." "I'd rather not have that."]})
+	    ^rand["I have no other activities to propose. If you change your mind, I will make you a riddle or tell you a joke!"
+		  "That's all I've got for now. If you're open to something else, I can offer a riddle or a joke."
+		  "I don't have any more suggestions at the moment. But if you're interested, I could share a riddle or a joke."]
+	    ^gotoReactivate(canDo)
+
+
+# User asks directly for a riddle
+u:(["I would like you to give me a riddle."
+    "Could you please tell me a riddle?"
+    "I'd appreciate it if you could offer me a riddle."])
+%startRiddle  Here's a riddle for you	
+
+
+# Joke Interaction
+proposal: %tellJoke ["OK, here is a joke for you: What do you do to have a space party? You planet!"
+		     "Alright, I've got a joke for you: What did the computer go to the doctor? Because he had a virus!" 
+		     "Here's a little humor for your enjoyment: What's a skeleton's favorite type of road? A dead end!"]	
+
+^rand["Do you want another joke?" "Should I tell another joke?" "Are you up for more jokes?"]
+
+	u1:(~yes {["I want another joke." "Could I get another joke, please?" "Tell me another joke."]})
+	^gotoReactivate(tellJoke)
+
+    	u1:(~no {["I want to change activity." "I'm looking to do something different." "I'd like to switch to another activity."]})
+	^gotoReactivate(canDo)
+
+
+# User asks for a joke
+u:(["I would like you to tell me a joke."
+    "Could you please share a joke with me?"
+    "I'd appreciate it if you could tell me something funny."])
+^gotoReactivate(tellJoke)
+
+
+# Unrecognized inputs
+# u:(*)
+#  ^rand["I'm not sure I understand. Could you please rephrase that?" "I don't quite follow. Would you mind putting that another way?" "I'm a bit confused. Could you explain it differently?"]

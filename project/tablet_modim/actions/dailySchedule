@@ -1,0 +1,16 @@
+IMAGE
+<*,*,*,*>:  img/schedule_1.jpg
+----
+TEXT
+<*,*,*,*>:  Daily schedule
+----
+TTS
+<*,*,*,*>:  Here's your daily schedule
+----
+BUTTONS
+quit
+<*,*,*,*>:  Quit
+----
+ASR 
+<*,*,*,*>:  { 'quit': ['quit', 'stop', 'enough' ,'exit']}
+----

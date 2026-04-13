@@ -1,0 +1,15 @@
+TEXT
+<*,*,*,*>:  Hold hand?
+----
+TTS
+<*,*,*,*>:  Would you like to hold my hand during the exercise?
+----
+BUTTONS
+yes
+<*,*,*,*>:  Yes
+no
+<*,*,*,*>:  No
+----
+ASR 
+<*,*,*,*>:  { 'yes': ['yes'], 'no': ['no'] }
+----

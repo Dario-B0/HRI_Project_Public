@@ -1,0 +1,17 @@
+TEXT
+<*,*,*,*>:  Would you like to modify the number of cycles?
+----
+TTS
+<*,*,*,*>:  Would you like to modify the number of cycles?
+----
+BUTTONS
+increase
+<*,*,*,*>:  Increase
+decrease
+<*,*,*,*>:  Decrease
+no
+<*,*,*,*>:  No Change
+----
+ASR 
+<*,*,*,*>:  { 'increase': ['increase'], 'decrease': ['decrease'], 'no': ['no', 'no change'] }
+----

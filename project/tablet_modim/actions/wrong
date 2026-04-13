@@ -1,0 +1,14 @@
+TEXT_title
+<*,*,it,*>: Mi dispiace! Risposta sbagliata!
+<*,*,*,*>: Sorry! Wrong Answer!
+----
+IMAGE
+<*,*,*,*>: img/wrong_im.jpg
+----
+TTS
+<*,*,*,*>: Sorry, the answer is wrong. Try again.
+----
+TEXT_default
+<*,*,*,*>:  Wrong: try again.
+----
+

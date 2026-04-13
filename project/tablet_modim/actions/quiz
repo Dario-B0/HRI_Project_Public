@@ -1,0 +1,24 @@
+TEXT
+<*,*,it,*>: Qual è la capitale della Svizzera?
+<*,*,*,*>:  What is the capital city of Switzerland? 
+----
+TTS
+<*,*,it,*>: Qual è la capitale della Svizzera?
+<*,*,*,*>:  What is the capital city of Switzerland? 
+----
+BUTTONS
+correct
+<*,*,*,*>:  Berna
+wrong1
+<*,*,*,*>:  Lugano
+wrong2
+<*,*,*,*>:  Basilea
+wrong3
+<*,*,*,*>:  Ginevra
+wrong4
+<*,*,*,*>:  Lucerna
+----
+ASR 
+<*,*,*,*>:  { 'correct': ['berna'], 'wrong1': ['lugano'], wrong2['basilea'], wrong3['ginevra'], wrong4['lucerna'] }
+----
+

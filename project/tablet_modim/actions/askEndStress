@@ -1,0 +1,17 @@
+TEXT
+<*,*,*,*>:  Would you like to repeat the session, terminate the interaction or shall I call a nurse to assist you?
+----
+TTS
+<*,*,*,*>:  Would you like to repeat the session, terminate the interaction or shall I call a nurse to assist you?
+----
+BUTTONS
+repeat
+<*,*,*,*>:  Repeat
+terminate
+<*,*,*,*>:  Terminate
+call
+<*,*,*,*>:  Call Nurse
+----
+ASR 
+<*,*,*,*>:  { 'repeat': ['repeat'], 'terminate': ['terminate'], 'call':['call nurse'] }
+----

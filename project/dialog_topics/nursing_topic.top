@@ -1,0 +1,31 @@
+topic: ~nursing()
+language: enu
+
+include:lexicon_enu.top
+
+# User ask help standing up
+concept:(stand_up) [
+    "~can_you help {me} ["stand up" "get up" "rise" "standing up" "getting up" "rising"]?"
+    "~help ["stand up" "get up" "rise" "standing up" "getting up" "rising"]"
+]
+
+u:({~hi_Pepper} ~stand_up) %help_stand ^rand["Would you like me to help you standing up?" "Can I assist you in getting to your feet?" "Shall I give you a hand with standing?"]
+  u1:(~yes) %help_agreed ^rand["Ok, I will get in pose to help you, touch my hand untill you need it." "I'll get into position to support you; simply hold my hand for as long as you need me." "Alright, I'm ready to assist you; just keep contact with my hand as long as you require my help."]
+  u1:(~no) ok, ^gotoReactivate(call_someone) 
+
+proposal: %still_help Do you still need help standing up?
+  u1:(~yes) %still_help_yes Ok, touch one of my hands and release it when you don't need help any more.
+  u1:(~no) %still_help_no Good, I am glad to help you.
+
+# User ask help
+u:({~hi_Pepper} {~help} ~i_dont_feel_good) %call_someone ^rand["Would you like if I call a nurse?" "Would it be helpful if I called a nurse?" "Shall I get a nurse to come over?"]
+  u1:(~yes) ^rand["I will call a nurse right away." "I'll contact a nurse immediately." "I'm going to summon a nurse at once."]
+  u1:(~no) ^rand["Ok, tell me if you need anything" "Let me know if there's anything I can help you with." "Feel free to reach out if you require assistance."]
+
+# User ask their schedule
+concept:(schedule) [
+    "~show_me {my} the schedule?"
+    "I ~wanna see {[my the]} schedule"
+]
+
+u:({~hi_Pepper} ~schedule) %tablet_schedule ^rand["Sure, look here on the tablet." "Okay, check this out on the tablet." "Absolutely, you can see it right here on the tablet."]
